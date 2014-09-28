@@ -1,0 +1,31 @@
+<div class="col-md-9">
+	<?php
+		if (!empty($this->Item)) {
+			$thisArticle = $this->cmsReplaceString($this->Item);
+			$article_id = $thisArticle['id'];
+			$category_id = $thisArticle['category_id'];
+			$article_title = $thisArticle['article_title'];
+			$article_content = $thisArticle['article_content'];
+			$created_time	= date('d/m/Y',strtotime($thisArticle['created_time']));
+			$view_counter = $thisArticle['view_counter'];
+			$cover_image = FILES_URL . '/news/cover-images/medium/' . $thisArticle['cover_image'];
+		}
+	?>
+	<h3 class="news-heading"><a><?php echo $article_title; ?></a></h3>
+	<hr/>
+	<div class="row">
+	<div class="col-md-12 news-block">
+		<img src="<?php echo $cover_image; ?>" alt="cnt tin tuc" class="img-thumbnail news-thumb-large"/>
+		<div class="news-introduce">
+			<span class="glyphicon glyphicon-calendar"></span><span class="news-attribute"> <?php echo $created_time; ?></span>
+			<span class="glyphicon glyphicon-check"></span><span class="news-attribute"> <?php echo $view_counter; ?> lượt xem</span>
+			<p class="news-brief"><?php echo $article_content; ?></p>
+		</div>
+		<hr/>
+		<!-- ***************************** cac tin khac ************************** -->
+		
+		<?php echo $this->blkRelativeArticle($category_id,$article_id); ?>
+		<!-- ***************************** End cac tin khac ********************** -->
+	</div>
+	</div>				
+</div>

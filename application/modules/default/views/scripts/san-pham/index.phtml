@@ -1,0 +1,56 @@
+<h3>Danh sách sản phẩm</h3>
+<hr/>
+<div class="row">
+<?php 
+	$productList = $this->Items;
+	if (!empty($productList)) {
+		foreach($productList as $key=>$val) {
+			$val = $this->cmsReplaceString($val);
+			$product_id = $val['id'];
+			$product_name = $val['product_name'];
+			$category_id = $val['category_id'];
+			$cover_image = FILES_URL . '/products/cover-images/medium/' . $val['cover_image'];
+			$filter = new Zend_Filter();
+			$multiFilter = $filter->addFilter(new Zend_Filter_StringToLower(array('encoding'=>'UTF-8')))
+									->addFilter(new Zend_Filter_StringTrim())
+									->addFilter(new Zend_Filter_Alnum(true))
+									->addFilter(new Zendvn_Filter_RemoveCircumflex())
+									->addFilter(new Zend_Filter_Word_SeparatorToDash(' '));
+							
+			$productUrlOptions = array('module'=>'default','controller'=>'san-pham','action'=>'san-pham-chi-tiet',
+							'title'=>$multiFilter->filter($product_name),'id'=>$product_id,'category_id'=>$category_id);
+							
+			$product_link = $this->url($productUrlOptions,'product-detail');
+?>
+
+	<div class="product-block">
+		<img src="<?php echo $cover_image; ?>" alt="cnt san pham" class="product-thumb"/>
+		<div class="product-introduce">
+			<h4 class="product-heading"><a href="<?php echo $product_link; ?>"><?php echo $product_name; ?></a></h4>
+			<p>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet</p>
+		</div>
+	</div>
+	
+<?php 
+		}
+	} else {
+?>
+	<div class = "col-md-12">
+		<div class="alert alert-danger">Không có sản phẩm nào thuộc mục này!</div>
+	</div>
+	
+<?php 
+	}
+?>
+</div>
+<!-- ********************************** phan trang **************************************-->
+<?php 
+		$paginator = $this->paginator;
+		if(!empty($paginator) && ($paginator->count()) > 1) {
+?>
+	<ul class="pagination pagination">
+		<?php $currentUrl = $this->baseUrl($this->currentController . '/index'); ?>
+		<?php echo $this->paginationControl($this->paginator,'Sliding','pagination.phtml',array('currentUrl'=>$currentUrl)); ?>
+	</ul>
+<?php } ?>
+<!-- ********************************** End phan trang **********************************-->

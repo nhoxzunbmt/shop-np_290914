@@ -1,0 +1,71 @@
+<div class="col-md-9">
+	<h3>TẤT CẢ TIN TỨC</h3>
+	<hr/>
+	<?php 
+		$articleList = $this->articleList;
+			if (!empty($articleList)) {
+				foreach ($articleList as $key=>$val) {
+					$val = $this->cmsReplaceString($val);
+					$article_id = $val['id'];
+					$category_id = $val['category_id'];
+					$article_title = $val['article_title'];
+					$article_brief = $val['article_brief'];
+					$article_content = $val['article_content'];
+					$created_time	= date('d/m/Y',strtotime($val['created_time']));
+					$view_counter = $val['view_counter'];
+					$cover_image = FILES_URL . '/news/cover-images/medium/' . $val['cover_image'];
+					$filter = new Zend_Filter();
+					$multiFilter = $filter->addFilter(new Zend_Filter_StringToLower(array('encoding'=>'UTF-8')))
+											->addFilter(new Zend_Filter_StringTrim())
+											->addFilter(new Zend_Filter_Alnum(true))
+											->addFilter(new Zendvn_Filter_RemoveCircumflex())
+											->addFilter(new Zend_Filter_Word_SeparatorToDash(' '));
+						
+					$articleUrlOptions = array('module'=>'default','controller'=>'tin-tuc','action'=>'tin-tuc-chi-tiet',
+							'title'=>$multiFilter->filter($article_title),'id'=>$article_id,'category_id'=>$category_id);
+						
+					$article_link = $this->url($articleUrlOptions,'news-detail');
+	?>
+	
+	<div class="row">
+		<div class="col-md-12 news-block">
+			<img src="<?php echo $cover_image; ?>" alt="cnt dich vu 1" class="img-thumbnail news-thumb-large"/>
+			<div class="news-introduce">
+				<h4 class="news-heading">
+					<a href="<?php echo $article_link; ?>"><?php echo $article_title; ?></a>
+				</h4>
+				<span class="glyphicon glyphicon-calendar"></span><span class="news-attribute"> <?php echo $created_time; ?></span>
+				<span class="glyphicon glyphicon-check"></span><span class="news-attribute"> <?php echo $view_counter; ?> lượt xem</span>
+				<p class="news-brief"><?php echo $article_brief; ?></p>
+				<span class="glyphicon glyphicon-chevron-right"></span>
+				<a href="<?php echo $article_link; ?>" class="news-detail-link">Chi tiết</a>
+			</div>
+		</div>
+	</div>
+					
+	<?php
+					}
+				} else {
+	?>
+	<div class="row">
+		<div class="col-md-12 news-block">
+			<div class="alert alert-danger">Không có tin tức nào thuộc mục này!</div>
+		</div>
+	</div>	
+	<?php
+				}
+	?>
+	
+	<!-- ********************************** phan trang **************************************-->
+	<?php 
+		$paginator = $this->paginator;
+		if(!empty($paginator) && ($paginator->count()) > 1) {
+	?>
+	<ul class="pagination pagination">
+		<?php $currentUrl = $this->baseUrl($this->currentController . '/index'); ?>
+		<?php echo $this->paginationControl($this->paginator,'Sliding','pagination.phtml',array('currentUrl'=>$currentUrl)); ?>
+	</ul>
+	<?php } ?>
+	<!-- ********************************** End phan trang **********************************-->
+				
+</div>

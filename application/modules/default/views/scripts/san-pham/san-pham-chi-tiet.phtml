@@ -1,0 +1,27 @@
+<h3>Chi tiết sản phẩm</h3>
+<hr/>
+<div class="row">
+	<div class="col-md-12">
+	<?php
+		if (!empty($this->Item)) {
+			$thisProduct = $this->cmsReplaceString($this->Item);
+			$product_id = $thisProduct['id'];
+			$product_name = $thisProduct['product_name'];
+			$cover_image = FILES_URL . '/products/cover-images/medium/' . $thisProduct['cover_image'];
+			$product_detail = $thisProduct['product_detail'];
+		}
+		
+	?>
+		<h4 class="product-name"><a><?php echo $product_name; ?></a></h4>
+		<img src="<?php echo $cover_image; ?>" alt="cnt san pham" class="img-thumbnail product-image-large"/>
+		
+		<!-- *************************** thong so san pham ******************************* -->
+		<?php echo $product_detail; ?>
+		<!-- *************************** End thong so san pham ***************************** -->
+		
+		<!-- ***************************** cac san pham khac ************************** -->
+		<div class="news-other">
+			<?php echo $this->blkRelativeProduct(0, $product_id); ?>
+		</div> <!-- *********************** End cac san pham khac ******************* -->
+	</div>
+</div>

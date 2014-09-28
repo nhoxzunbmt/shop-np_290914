@@ -1,0 +1,96 @@
+<?php
+	//----- INPUT ELEMENT ---------------------------------------
+	//----- Lay du lieu truyen tu controller sang dua vao cac input cua form
+	//----- neu chua co thi tu khoi tao du lieu cho cac input cua form
+	$formdata = $this->FormData;
+	$formstyle = $this->FormStyle;
+	if ($formdata == null) {
+		$formdata['contact_title'] = '';
+		$formdata['contact_name'] = '';
+		$formdata['contact_address'] = '';
+		$formdata['contact_email'] = '';
+		$formdata['contact_mobile'] = '';
+		$formdata['contact_content'] = '';
+	} else {
+		$formdata = $this->cmsReplaceString($formdata);
+	}
+	//----- Lay dinh dang truyen tu controller sang dua vao cac input cua form
+	//----- neu chua co thi tu khoi tao dinh dang cho cac input cua form
+	if ($formstyle == null) {
+		$formstyle['contact_title'] = '';
+		$formstyle['contact_name'] = '';
+		$formstyle['contact_address'] = '';
+		$formstyle['contact_email'] = '';
+		$formstyle['contact_mobile'] = '';
+		$formstyle['contact_content'] = '';
+	}
+	
+	$contact_title 	= $this->formText('contact_title',$formdata['contact_title'],array('class'=>'form-control','style'=>$formstyle['contact_title']));
+	$contact_name 	= $this->formText('contact_name',$formdata['contact_name'],array('placeholder'=>'nhap ho ten...','class'=>'form-control','style'=>$formstyle['contact_name']));
+	$contact_address 	= $this->formText('contact_address',$formdata['contact_address'],array('class'=>'form-control','style'=>$formstyle['contact_address']));
+	$contact_email		 	= $this->formText('contact_email',$formdata['contact_email'],array('placeholder'=>'nhap email...','class'=>'form-control','style'=>$formstyle['contact_email']));
+	$contact_mobile		 	= $this->formText('contact_mobile',$formdata['contact_mobile'],array('placeholder'=>'nhap dien thoai...','class'=>'form-control','style'=>$formstyle['contact_mobile']));
+	$contact_content = $this->formTextarea('contact_content',$formdata['contact_content'],array('rows'=>3,'class'=>'form-control','style'=>$formstyle['contact_content']));
+	$submit			= $this->formSubmit('submit','Gửi',array('class'=>'btn btn-default btn-primary'));
+	
+	//----- thong bao loi -----
+	$errors = '';
+	if (count($this->messageError) > 0) {
+		$errors = $this->formErrors($this->messageError,array('id'=>'contact_errors'));
+	}
+?>
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 service">
+		<div class="row">
+			<div class="col-md-6">
+				<h3>Thông tin liên hệ</h3>
+				<hr/>
+				
+				<?php echo $this->blkContactMap(); ?>
+				
+				<?php echo $this->blkContactInformation(); ?>
+					
+			</div>
+			<div class="col-md-6">
+					<h3>Gửi thư liên hệ</h3>
+					<hr/>
+					<?php
+							if(!empty($errors)) {
+								if($this->validateResult == "error") {
+					?>
+									<div class="alert alert-danger"><?php echo $errors; ?></div>
+					<?php	} else if($this->validateResult == "success") { 
+					?>
+									<div class="alert alert-success"><?php echo $errors; ?></div>
+					<?php 
+								}
+							} 
+					?>
+				
+					<form role="form" class="contact-form" method="post" action="">
+						<div class="form-group">
+							<label for="contact-name">Họ tên</label>
+							<?php echo $contact_name; ?>
+						</div>
+						<div class="form-group">
+							<label for="contact-mobile">Điện thoại</label>
+							<?php echo $contact_mobile; ?>
+						</div>
+						<div class="form-group">
+							<label for="contact-email">Email address</label>
+							<?php echo $contact_email; ?>
+						</div>
+													
+						<div class="form-group">
+							<label for="contact-content">Nội dung</label>
+							<?php echo $contact_content; ?>
+						</div>
+					
+						<?php echo $submit; ?>
+						
+					</form>
+			</div>				
+		</div>
+	</div>
+</div>

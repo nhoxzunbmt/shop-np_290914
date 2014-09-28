@@ -1,0 +1,4 @@
+#Wed Jul 02 23:21:11 ICT 2014
+eclipse.preferences.version=1
+include_path=5;com.zend.php.phpunit.CONTAINER\u00055;org.zend.php.framework.CONTAINER\u00050;/admin-template
+use_asp_tags_as_php=false

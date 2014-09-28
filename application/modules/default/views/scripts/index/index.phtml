@@ -1,0 +1,40 @@
+<div class="row">
+	<div class="col-md-8 col-md-offset-2 introduce">
+		<h3>Giới thiệu công ty</h3>
+		<hr/>
+		<div class="row">
+			<?php
+				if(!empty($this->introducePage)) {
+					$introducePage = $this->cmsReplaceString($this->introducePage);
+					$page_id = $introducePage['id'];
+					$page_title = $introducePage['page_title'];
+					$page_brief = $introducePage['page_brief'];
+					$cover_image = FILES_URL . '/pages/cover-images/medium/' . $introducePage['cover_image'];
+					$filter = new Zend_Filter();
+					$multiFilter = $filter->addFilter(new Zend_Filter_StringToLower(array('encoding'=>'UTF-8')))
+											->addFilter(new Zend_Filter_StringTrim())
+											->addFilter(new Zend_Filter_Alnum(true))
+											->addFilter(new Zendvn_Filter_RemoveCircumflex())
+											->addFilter(new Zend_Filter_Word_SeparatorToDash(' '));
+					
+					$pageUrlOptions = array('module'=>'default','controller'=>'index','action'=>'gioi-thieu',
+							'title'=>$multiFilter->filter($page_title),'id'=>$page_id);
+					
+					$page_link = $this->url($pageUrlOptions,'page');
+			?>
+			<div class="col-md-9">
+				<img src="<?php echo $cover_image; ?>" alt="cnt gioi thieu cong ty" class="img-thumbnail introduce-image"/>
+				<h4><?php echo $page_title; ?></h4>
+				<p><?php  echo $page_brief; ?></p>
+				<a href="<?php echo $page_link; ?>">
+					<button type="button" class="btn btn-primary cnt-detail-button">Chi tiết</button>
+				</a>
+			</div>
+			
+			<?php
+				}
+				echo $this->blkAboutUs();
+			?>
+		</div>
+	</div>
+</div>
