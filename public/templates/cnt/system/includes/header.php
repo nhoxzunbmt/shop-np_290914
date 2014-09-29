@@ -8,19 +8,19 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <ul class="nav navbar-nav pull-right">
                 <li class="first active">
-                  <a href="index.html">Trang chủ</a>
+                  <a href="index">Trang chủ</a>
                 </li>
                 <li>
-                  <a href="shop-np/default/tin-tuc">Tin tức</a>
+                  <a href="/shop-np/default/tin-tuc">Tin tức</a>
                 </li>
                 <li>
-                  <a href="default/index/gioi-thieu">Giới thiệu</a>
+                  <a href="/shop-np/default/index/gioi-thieu">Giới thiệu</a>
                 </li>
                 <li>
-                  <a href="shop-np/default/san-pham">Báo giá</a>
+                  <a href="/shop-np/default/san-pham">Báo giá</a>
                 </li>
                 <li>
-                  <a href="shop-np/default/index/lien-he">Liên hệ</a>
+                  <a href="/shop-np/default/index/lien-he">Liên hệ</a>
                 </li>
               </ul>
             </div>

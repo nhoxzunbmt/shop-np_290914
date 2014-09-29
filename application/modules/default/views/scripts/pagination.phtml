@@ -23,8 +23,14 @@
 	
 	$page = 'Page ' .$this->current .' of ' .$this->last;
 ?>
-
-<li><a href="<?php echo $linkStart;?>" title="Start">&laquo;</a></li>
+ <ul class="pagination">
 
 <?php echo $strPage;?>
-<li><a href="<?php echo $linkEnd;?>" title="End">&raquo;</a></li>
+
+</ul>
+          
+ <ul class="pagination pager2 pull-right">
+ 	<li><a href="<?php echo $linkPrevious;?>"> < </a></li>
+      <li><a href="<?php echo $linkNext;?>"> > </a></li>
+    
+ </ul>

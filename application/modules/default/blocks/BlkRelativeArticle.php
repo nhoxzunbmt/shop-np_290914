@@ -11,12 +11,14 @@ class Default_Block_BlkRelativeArticle extends Zend_View_Helper_Abstract {
 		//$db = Zend_Db::factory($adapter,$config);
 		$select = $db->select()
 					 ->from('news_category_article AS nca', array('nca.article_id','nca.category_id'))
-					 ->joinLeft('news_article AS na','na.id = nca.article_id',array('na.id','na.article_title'))
+					 ->joinLeft('news_article AS na','na.id = nca.article_id',array('na.id','na.article_title','na.cover_image','na.created_time'))
 					 //->where('nca.category_id = ?',$category_id)
 					 ->where('nca.article_id <> ?', $thisArticle_id)
 					 ->where('na.publish = 1')
+					  
 					 ->order('na.publish_time DESC')
-					 ->limit(5,0);
+					->group('nca.article_id')
+					 ->limit(3,0);
 		$relativeArticles = $db->fetchAll($select);
 
 		require_once (DEFAULT_BLOCK_PATH . '/BlkRelativeArticle/default.php');

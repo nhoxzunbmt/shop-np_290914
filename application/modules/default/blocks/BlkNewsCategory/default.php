@@ -1,6 +1,8 @@
-<div class="col-md-3">
-	<h3 class="top-margin">NHÓM TIN TỨC</h3>
-	<div class="list-group">
+
+ 			<h4>
+              Danh mục
+            </h4>
+		  <ul class="list-cat">
 		<?php
 			$thisNewsCategory_Id = $blockView->thisNewsCategory_Id;
 			if (!empty($newsCategoryList) && count($newsCategoryList) > 0) {
@@ -22,16 +24,20 @@
 					$category_link = $blockView->url($newsCatUrlOptions,'news-category');
 					if ($thisNewsCategory_Id == $category_id) {
 		?>
-					<a href="<?php echo $category_link; ?>" class="list-group-item active">
+					<li><a href="<?php echo $category_link; ?>" >
 		<?php } else { ?>
-					<a href="<?php echo $category_link; ?>" class="list-group-item">
+					<li><a href="<?php echo $category_link; ?>" >
 		<?php 	} ?>
-						<span class="glyphicon glyphicon-chevron-right"></span> <?php echo $category_name; ?>
-					</a>
+						 <?php echo $category_name; ?>
+					</a></li>
 		<?php 
 				}
 			}
 		?>
-						
-	</div>
-</div>
+		 </ul>					
+	
+
+          
+         
+              
+           

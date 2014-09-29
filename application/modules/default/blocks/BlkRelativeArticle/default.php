@@ -1,14 +1,22 @@
-<div class="news-other">
-	<h4><span class="label label-primary">Các tin tức khác</span></h4>
-	<ul class="other-news">
+
+	
+            <h4>
+              Tin liên quan
+            </h4>
+
 	<?php
 		if(!empty($relativeArticles)) {
+			
 			foreach($relativeArticles as $key=>$val) {
+				//var_dump($val);
+				 $dem=0;
+				  $dem++;
 				$val = $blockView->cmsReplaceString($val);
 				$article_id = $val['id'];
 				$category_id = $val['category_id'];
 				$article_title = $val['article_title'];
-			
+				$created_time = date('d/m/Y',strtotime($val['created_time']));
+				$cover_image = FILES_URL . '/news/cover-images/small/' . $val['cover_image'];
 				$filter = new Zend_Filter();
 				$multiFilter = $filter->addFilter(new Zend_Filter_StringToLower(array('encoding'=>'UTF-8')))
 				->addFilter(new Zend_Filter_StringTrim())
@@ -20,11 +28,23 @@
 						'title'=>$multiFilter->filter($article_title),'id'=>$article_id,'category_id'=>$category_id);
 				 
 				$article_link = $blockView->url($articleUrlOptions,'news-detail');	
+
 	?>
-	
-	<li><span class="glyphicon glyphicon-chevron-right"></span>
-	<a href="<?php echo $article_link; ?>"><?php echo $article_title; ?></a></li>
-	
+	 <?php if($dem!=1){ ?>
+            <hr/>
+            <?php } ?>
+            <div class="item">
+              <div class="item-details">
+	                <a href="<?php echo $article_link ; ?>">
+                  <div class="item-img"><img src="<?php echo $cover_image ; ?>" class="img-responsive" alt=""></div>
+                </a>
+                <div>
+                  <a href="<?php echo $article_link; ?>"><span class="item-title"><?php echo $article_title; ?></span></a><br />
+                  <span class="item-date"><?php echo $created_time; ?> &nbsp; | &nbsp; M-elgendy</span>
+                </div>
+
+	         </div>
+            </div>
 	<?php 
 			}
 		} else {
@@ -33,5 +53,4 @@
 	<?php 
 		}
 	?>
-	</ul>
-</div>
+              
