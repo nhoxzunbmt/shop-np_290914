@@ -1,4 +1,4 @@
-aa
+shop computer laptop = zend
 ==
-
-bb
+contact
+pt.duc08@gmail.com
