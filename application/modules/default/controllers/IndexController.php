@@ -86,11 +86,21 @@ class IndexController extends Zendvn_Controller_Action {
 		$tblPage = new Default_Model_Pages();
 		$introducePage = $tblPage->getItem(array('id'=>1),array('task'=>'default-page-info'));
 		$this->view->introducePage = $introducePage;
-		
-		echo "<pre>";
-		print_r($this->_arrParam);
-		echo "</pre>";
-		
+		//var_dump($this->view->introducePage);
+		//echo "<pre>";
+		//print_r($this->_arrParam);
+		//echo "</pre>";
+
+		$tblProduct = new Default_Model_Product();
+		$productView = $tblProduct->listItem($this->_arrParam,array('task'=>'news-product-list'));
+		$this->view->Items = $productView;
+		//	var_dump($productView);
+
+		$tblProduct = new Default_Model_Product();
+		$productMost_View = $tblProduct->listItem($this->_arrParam,array('task'=>'most_view-product-list'));
+		$this->view->most_view = $productMost_View;
+		//var_dump($productView_Counter);
+
 		//$tblProjects = new Default_Model_Project();
 		//$newestProjects = $tblProjects->listItem($this->_arrParam,array('task'=>'default-get-three-newest-projects'));
 		//$this->view->newestProjects = $newestProjects;

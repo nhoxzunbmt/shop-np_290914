@@ -87,8 +87,7 @@ class SanPhamController extends Zendvn_Controller_Action {
 		
 		$this->view->Items = $productList;
 		$this->view->thisProductCategory_Id = $this->_arrParam['category_id'];
-		//var_dump($productList);
-		//var_dump($this->_arrParam);
+		
 		//----- lay tong so phan tu de phan trang
 		$totalProduct = $tblProduct->countItem($this->_arrParam,array('task'=>'count-item-all'));
 		$paginator = new Zendvn_Paginator();
@@ -107,6 +106,7 @@ class SanPhamController extends Zendvn_Controller_Action {
 		$tblProduct = new Default_Model_Product();
 		$this->view->Item = $tblProduct->getItem($this->_arrParam,array('task'=>'default-product-info'));
 		$this->view->thisProductCategory_Id = $this->_arrParam['category_id'];
+		//var_dump($this->view->Item);
 	}
 	
 }
