@@ -8,3 +8,4 @@ $options = APPLICATION_PATH . '/configs/application.ini';
 $application = new Zend_Application($environment, $options);
 $application->bootstrap()->run();
 
+//test hoang
