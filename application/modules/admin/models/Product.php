@@ -391,6 +391,18 @@ class Admin_Model_Product extends Zend_Db_Table {
 			$row->publish	 	= $arrParam['publish'];
 			$row->order		 	= $arrParam['order'];
 			$row->lock_status 	= $arrParam['lock_status'];
+
+			$row->product_assessment 	= $arrParam['product_assessment'];
+			
+			$row->product_guarantee 	= $arrParam['product_guarantee'];
+		
+			$row->product_model 	= $arrParam['product_model'];
+			
+			$row->product_code 	= $arrParam['product_code'];
+			$row->product_guarantee_policy 	= $arrParam['product_guarantee_policy'];
+			$row->product_price_new 	= $arrParam['product_price_new'];
+			$row->view_counter 	= $arrParam['view_counter'];
+			
 			
 			//----- lay user_id cua user tao ra nhom nay
 			$info = new Zendvn_System_Info();
@@ -422,6 +434,18 @@ class Admin_Model_Product extends Zend_Db_Table {
 			$row->order		 	= $arrParam['order'];
 			$row->lock_status 	= $arrParam['lock_status'];
 			
+			$row->product_assessment 	= $arrParam['product_assessment'];
+		
+			$row->product_guarantee 	= $arrParam['product_guarantee'];
+			
+			$row->product_model 	= $arrParam['product_model'];
+				
+			$row->product_code 	= $arrParam['product_code'];
+			$row->product_guarantee_policy 	= $arrParam['product_guarantee_policy'];
+			$row->product_price_new 	= $arrParam['product_price_new'];
+			$row->view_counter 	= $arrParam['view_counter'];
+		
+
 			//----- lay user_id cua user dang login vao he thong
 			$info = new Zendvn_System_Info();
 			$user_id = $info->getMemberInfo('id');

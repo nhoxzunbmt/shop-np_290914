@@ -33,7 +33,7 @@ define('APPLICATION_URL','');
 define('SRCIPTS_URL', APPLICATION_URL . '/public/scripts');
 define('TEMPLATE_URL', APPLICATION_URL . '/public/templates');
 define('CAPTCHA_URL', APPLICATION_URL . '/public/captcha');
-define('FILES_URL', APPLICATION_URL . '/shop-np/public/files');
+define('FILES_URL', APPLICATION_URL . '/public/files');
 define('TEMP_URL', APPLICATION_URL . '/public/temp');
 
 //------------KHAI BAO MOT SO HANG SO QUAN TRONG ------------------

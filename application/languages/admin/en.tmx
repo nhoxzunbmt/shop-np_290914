@@ -1464,6 +1464,29 @@
 <tu tuid='admin-product-add-lockstatus-warning'>
 	<tuv xml:lang="en"><seg>This user can not lock/unlock a product</seg></tuv>
 </tu>
+
+<tu tuid='admin-product-add-label-product_assessment'>
+	<tuv xml:lang="en"><seg>Product Assessment</seg></tuv>
+</tu>
+<tu tuid='admin-product-add-label-product_guarantee'>
+	<tuv xml:lang="en"><seg>Product Guarantee</seg></tuv>
+</tu>
+<tu tuid='admin-product-add-label-product_model'>
+	<tuv xml:lang="en"><seg>Product Model</seg></tuv>
+</tu>
+<tu tuid='admin-product-add-label-product_code'>
+	<tuv xml:lang="en"><seg>Product Code</seg></tuv>
+</tu>
+<tu tuid='admin-product-add-label-product_guarantee_policy'>
+	<tuv xml:lang="en"><seg>Product Guarantee Policy</seg></tuv>
+</tu>
+<tu tuid='admin-product-add-label-product_price_new'>
+	<tuv xml:lang="en"><seg>Product Price New</seg></tuv>
+</tu>
+<tu tuid='admin-product-add-label-view_counter'>
+	<tuv xml:lang="en"><seg>View Counter</seg></tuv>
+</tu>
+
 //----------EDIT PRODUCT --------------------
 <tu tuid='admin-product-edit-title'>
 	<tuv xml:lang="en"><seg>Product :: Product Item :: Edit Product</seg></tuv>

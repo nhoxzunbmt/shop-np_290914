@@ -36,7 +36,7 @@ class Default_Model_Product extends Zend_Db_Table {
 			
 			$result = $db->fetchRow($select);
 		}
-		
+
 		return $result;
 	}
 	
@@ -97,8 +97,30 @@ class Default_Model_Product extends Zend_Db_Table {
 						 ->group('p.id')
 						 ->limit(3,0);
 			$result = $db->fetchAll($select);
+			//var_dump($result);
 		}
-		
+		if ($options['task'] == 'news-product-list') {
+			$select = $db->select()
+						 ->from('products AS p')
+						 ->joinLeft('product_category AS pc','p.product_category_id = pc.id','pc.id AS category_id')
+						 ->where('p.publish = 1')
+						 ->order('p.created_time DESC')
+						// ->group('p.id')
+						 ->limit(6,0);
+			$result = $db->fetchAll($select);
+			//var_dump($result);
+		}
+		if ($options['task'] == 'most_view-product-list') {
+			$select = $db->select()
+						 ->from('products AS p')
+						 ->joinLeft('product_category AS pc','p.product_category_id = pc.id','pc.id AS category_id')
+						 ->where('p.publish = 1')
+						 ->order('p.view_counter DESC')
+						 //->group('p.id')
+						 ->limit(6,0);
+			$result = $db->fetchAll($select);
+			//var_dump($result);
+		}
 		return $result;
 	}
 

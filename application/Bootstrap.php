@@ -14,9 +14,9 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
 		
 		$optionResources = $this->getOption('resources');
 		$dbOption = $optionResources['db'];
-		$dbOption['params']['username'] = 'root';
-		$dbOption['params']['password'] = '';
-		$dbOption['params']['dbname'] = 'admin-template';
+		$dbOption['params']['username'] = 'admintem_dbuser';
+		$dbOption['params']['password'] = 'MU]k1DT,av)6';
+		$dbOption['params']['dbname'] = 'admintem_website';
 		
 		$adapter = $dbOption['adapter'];
 		$config = $dbOption['params'];
