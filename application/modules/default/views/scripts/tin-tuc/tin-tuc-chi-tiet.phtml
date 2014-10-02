@@ -1,4 +1,4 @@
-  		 	<?php
+                                  		 	<?php
 		if (!empty($this->Item)) {
 			$thisArticle = $this->cmsReplaceString($this->Item);
 			//var_dump($thisArticle);
@@ -16,13 +16,13 @@
       <div class="row">
         <ol class="breadcrumb">
           <li>
-            <a href="index.html">Trang chủ</a>
+            <a href="/index">Trang chủ</a>
           </li>
           <li>
-            <a href="news.html">Tin tức</a>
+            <a href="/default/tin-tuc">Tin tức</a>
           </li>
           <li>
-            <a href="news.html"><?php echo $category_name; ?></a>
+            <a href="<?php echo $category_link ?>"><?php echo $category_name; ?></a>
           </li>
           <li class="active"><?php echo $article_title; ?></li>
         </ol>
@@ -54,10 +54,11 @@
     			 <?php echo $this->blkRelativeArticle(); ?>
     			 
     			<div id="adv">
-                <a href="news-details.html">
+                <a href="#">
                   <img src="<?php echo $this->imgUrl; ?>/news17.jpg" class="img-responsive" alt="">
                 </a>
           </div>
           </div>
         </div>
       </div>
+                            

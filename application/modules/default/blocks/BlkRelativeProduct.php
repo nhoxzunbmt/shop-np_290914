@@ -29,7 +29,7 @@ class Default_Block_BlkRelativeProduct extends Zend_View_Helper_Abstract {
 		}
 		
 		$relativeProducts = $db->fetchAll($select);
-
+		//var_dump($relativeProducts);
 		require_once (DEFAULT_BLOCK_PATH . '/BlkRelativeProduct/default.php');
 	}
 }

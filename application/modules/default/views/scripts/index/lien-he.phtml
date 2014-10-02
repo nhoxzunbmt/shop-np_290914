@@ -1,10 +1,10 @@
       <div class="row">
         <ol class="breadcrumb">
           <li>
-            <a href="index.html">Trang chủ</a>
+            <a href="/index">Trang chủ</a>
           </li>
           <li>
-            <a href="contact.html">Liên hệ</a>
+            <a href="/default/lien-he">Liên hệ</a>
           </li>
           <li class="active">NgocPhuong Shop</li>
         </ol>
@@ -15,36 +15,51 @@
       <div class="row">
 
         <div id="contact" class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-
+<form role="form" class="contact-form" method="post" action="">
           <div class="item">
             <h3>Gửi thông tin liên hệ</h3>
-            <p>Thank you for stopping by! We are happy to hear from you. Please contact us through the form below and we will get back to you as soon as we can. </p>
-
+            <hr/>
+          <?php
+          $errors = '';
+  if (count($this->messageError) > 0) {
+    $errors = $this->formErrors($this->messageError,array('id'=>'contact_errors'));
+  }
+              if(!empty($errors)) {
+                if($this->validateResult == "error") {
+          ?>
+                  <div class="alert alert-danger"><?php echo $errors; ?></div>
+          <?php } else if($this->validateResult == "success") { 
+          ?>
+                  <div class="alert alert-success"><?php echo $errors; ?></div>
+          <?php 
+                }
+              } 
+          ?>
             <div class="fields">
               <label class="required" for="Contact_name">Tên <span class="required">(*)</span></label>
-              <input type="text" id="Contact_name" name="Contact[name]" maxlength="255" size="60">
+              <input type="text" id="Contact_name" name="contact_name" maxlength="255" size="60">
             </div>
 
             <div class="fields">
               <label class="required" for="Contact_email">Email <span class="required">(*)</span></label>
-              <input type="text" id="Contact_email" name="Contact[email]" maxlength="255" size="60">
+              <input type="text" id="Contact_email" name="contact_email" maxlength="255" size="60">
             </div>
 
             <div class="fields">
               <label class="required" for="Contact_phone">Điện thoại <span class="required">(*)</span></label>
-              <input type="text" id="Contact_phone" name="Contact[phone]" maxlength="255" size="60">
+              <input type="text" id="Contact_phone" name="contact_mobile" maxlength="255" size="60">
             </div>
 
             <div class="fields">
               <label class="required" for="Contact_body">Nội dung <span class="required">(*)</span></label>
-              <textarea name="Contact[body]" rows="8" cols="40" id="Contact_body"></textarea>
+              <textarea name="contact_content" rows="8" cols="40" id="Contact_body"></textarea>
             </div>
 
             <div class="buttons">
               <input type="submit" value="Gửi đi" class="btn btn-primary btn_g">
             </div>
           </div>
-
+</form>
         </div>
 
 

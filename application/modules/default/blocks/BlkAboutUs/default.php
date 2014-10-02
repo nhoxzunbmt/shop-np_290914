@@ -1,9 +1,13 @@
-<div class="col-md-3">
-	<div class="list-group">
+          
+            <h4>
+              Danh mục
+            </h4>
+            <ul class="list-cat">
 	<?php
 		$order = 0;
 		if (!empty($pageList)) {
 			foreach($pageList as $key=>$val) {
+				//var_dump($val);
 				$val = $blockView->cmsReplaceString($val);
 				$order		= $order + 1;
 				$page_id 	= $val['id'];
@@ -25,19 +29,20 @@
 				$page_link = $blockView->url($pageUrlOptions,'page');
 				if ($page_id == $thisPage_Id) {
 	?>				
-				<a href="<?php echo $page_link; ?>" class="list-group-item active">
-	<?php
-				} else {
-	?>
-				<a href="<?php echo $page_link; ?>" class="list-group-item">
-	<?php		} ?>
-		
-					<span class="glyphicon glyphicon-th-list"></span> <?php echo $page_title; ?>
-				</a>
-	<?php 
+              <li class="first active"><a href="<?php echo $page_link; ?>"> <?php echo $page_title; ?></a></li>
+     	<?php 
+			}
+			else{
+				?>
+				<li><a href="<?php echo $page_link; ?>"> <?php echo $page_title; ?></a></li>
+				<?php
 			}
 		}
-	?>
-	
-	</div>
-</div>
+	}
+	?>         
+            </ul>
+
+
+            
+
+           
