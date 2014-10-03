@@ -61,7 +61,21 @@ class SanPhamController extends Zendvn_Controller_Action {
 		$this->_arrParam['ssFilter']['keywords'] = $ssFilter->keywords;
 		$this->_arrParam['ssFilter']['col'] = $ssFilter->col;
 		$this->_arrParam['ssFilter']['order'] = $ssFilter->order;
+		//Loc san pham 
+		if(isset($this->_arrParam['price'])&&!empty($this->_arrParam['price'])){
+			$ssFilter->price=$this->_arrParam['price'];
+			}
 		
+	
+		if(isset( $ssFilter->price)&&!empty( $ssFilter->price)){	
+			$this->_arrParam['ssFilter']['price'] = $ssFilter->price;
+			$this->view->priceFilter = $ssFilter->price;
+			}
+		if(isset($this->_arrParam['delfilter'])&&!empty($this->_arrParam['delfilter'])){	
+			if($this->_arrParam['delfilter']=='price'){unset($ssFilter->price);}
+			if($this->_arrParam['delfilter']=='cate'){unset($ssFilter->cate);}
+			}
+	
 		//----- truyen ra view
 		$this->view->arrParam = $this->_arrParam;
 		$this->view->currentController = $this->_currentController;
