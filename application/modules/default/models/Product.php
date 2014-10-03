@@ -61,7 +61,8 @@ class Default_Model_Product extends Zend_Db_Table {
 							 ->joinLeft('product_category AS pc', 'p.product_category_id = pc.id','pc.id AS category_id')
 							 ->where('p.product_category_id = ?',$arrParam['category_id'],INTEGER)
 							 ->where('p.publish = 1')
-							 ->order('p.order ASC')
+							 ->order('p.created_time DESC')
+							// ->order('p.order ASC')
 							 ->group('p.id');
 			}
 			

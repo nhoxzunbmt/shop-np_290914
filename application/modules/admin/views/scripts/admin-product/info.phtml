@@ -20,6 +20,15 @@
 		$formdata['publish_by'] = '';
 		$formdata['publish_time'] = '0000-00-00 00:00:00';
 		$formdata['hit_counter'] = 0;
+
+		$formdata['product_assessment'] = '';
+		$formdata['product_guarantee'] = '';
+		$formdata['product_model'] = '';
+		$formdata['product_code'] = '';
+		$formdata['product_guarantee_policy'] = '';
+		$formdata['product_price_new'] = '';
+		$formdata['view_counter'] = '';
+
 	} else {
 		$formdata = $this->cmsReplaceString($formdata);
 	}
@@ -32,6 +41,14 @@
 	$price		 	= $formdata['price'];
 	$product_detail = $formdata['product_detail'];
 	
+	$product_assessment = $formdata['product_assessment'];
+	$product_guarantee = $formdata['product_guarantee'];
+	$product_model = $formdata['product_model'];
+	$product_code = $formdata['product_code'];
+	$product_guarantee_policy = $formdata['product_guarantee_policy'];
+	$product_price_new = $formdata['product_price_new'];
+	$view_counter = $formdata['view_counter'];
+
 	//----- CREATE: publish option --------------------------
 	$publish		= $formdata['publish'];
 	if ($publish == 0) {
@@ -87,6 +104,15 @@
 			array('label'=>$this->translate('admin-cp-lastmodifiedtime'),'input'=>$last_modified_time),
 			array('label'=>$this->translate('admin-cp-publishedby'),'input'=>$publisher_name),
 			array('label'=>$this->translate('admin-cp-publishedtime'),'input'=>$publish_time),
+
+		array('label'=>$this->translate('admin-product-add-label-product_assessment'),'input'=>$product_assessment),					
+		array('label'=>$this->translate('admin-product-add-label-product_guarantee'),'input'=>$product_guarantee)	,				
+		array('label'=>$this->translate('admin-product-add-label-product_model'),'input'=>$product_model),
+		array('label'=>$this->translate('admin-product-add-label-product_code'),'input'=>$product_code),
+array('label'=>$this->translate('admin-product-add-label-product_guarantee_policy'),'input'=>$product_guarantee_policy),
+			array('label'=>$this->translate('admin-product-add-label-product_price_new'),'input'=>$product_price_new),
+			array('label'=>$this->translate('admin-product-add-label-view_counter'),'input'=>$view_counter),
+					
 	);
 	
 ?>
