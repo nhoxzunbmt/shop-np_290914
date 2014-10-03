@@ -99,6 +99,11 @@ class SanPhamController extends Zendvn_Controller_Action {
 		$tblProduct = new Default_Model_Product();
 		$productList = $tblProduct->listItem($this->_arrParam,array('task'=>'default-product-list'));
 		
+		if ($this->_arrParam['category_id'] == 0) {
+			$this->view->categoryName= 'T?t c?';
+		}else{
+		$this->view->categoryName = $proCat_list[0]['category_name'];
+		}
 		$this->view->Items = $productList;
 		$this->view->thisProductCategory_Id = $this->_arrParam['category_id'];
 		
