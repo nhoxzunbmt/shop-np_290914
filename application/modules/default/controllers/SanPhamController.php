@@ -61,20 +61,18 @@ class SanPhamController extends Zendvn_Controller_Action {
 		$this->_arrParam['ssFilter']['keywords'] = $ssFilter->keywords;
 		$this->_arrParam['ssFilter']['col'] = $ssFilter->col;
 		$this->_arrParam['ssFilter']['order'] = $ssFilter->order;
-		//Loc san pham 
-		if(isset($this->_arrParam['price'])&&!empty($this->_arrParam['price'])){
-			$ssFilter->price=$this->_arrParam['price'];
-			}
 		
-	
+		//----Set param cho model va truyen ra view	
 		if(isset( $ssFilter->price)&&!empty( $ssFilter->price)){	
 			$this->_arrParam['ssFilter']['price'] = $ssFilter->price;
 			$this->view->priceFilter = $ssFilter->price;
 			}
-		if(isset($this->_arrParam['delfilter'])&&!empty($this->_arrParam['delfilter'])){	
-			if($this->_arrParam['delfilter']=='price'){unset($ssFilter->price);}
-			if($this->_arrParam['delfilter']=='cate'){unset($ssFilter->cate);}
-			}
+
+		if(isset( $ssFilter->filter_cate)&&!empty( $ssFilter->filter_cate)){	
+			$this->_arrParam['ssFilter']['filter_cate'] = $ssFilter->filter_cate;
+			$this->view->cateFilter = $ssFilter->filter_cate;
+			}	
+		
 	
 		//----- truyen ra view
 		$this->view->arrParam = $this->_arrParam;
@@ -88,7 +86,12 @@ class SanPhamController extends Zendvn_Controller_Action {
 	public function indexAction() {
 		$template_path = TEMPLATE_PATH . "/cnt/system";
 		$this->loadTemplate($template_path,'template.ini','product');
-		
+		$previousURL=$this->_request->getPathInfo();
+
+		$ssFilter = new Zend_Session_Namespace($this->_namespace);
+		$ssFilter->previousURL=$previousURL;
+
+
 		if (!isset($this->_arrParam['category_id'])) {
 			$this->_arrParam['category_id'] = 0;
 		}
@@ -120,7 +123,48 @@ class SanPhamController extends Zendvn_Controller_Action {
 		$tblProduct = new Default_Model_Product();
 		$this->view->Item = $tblProduct->getItem($this->_arrParam,array('task'=>'default-product-info'));
 		$this->view->thisProductCategory_Id = $this->_arrParam['category_id'];
-		//var_dump($this->view->Item);
+		
 	}
-	
+	public function addfilterAction(){
+		
+		$this->_helper->viewRenderer->setNoRender();
+		
+		$ssFilter = new Zend_Session_Namespace($this->_namespace);
+		$previousURL=$ssFilter->previousURL;
+		
+		if(isset($this->_arrParam['cate'])&&!empty($this->_arrParam['cate'])){
+			//----- unset previous session if exist
+			if(isset($ssFilter->filter_cate)&&!empty($ssFilter->filter_cate)){unset($ssFilter->filter_cate);}
+			//set session
+			$ssFilter->filter_cate=$this->_arrParam['cate'];
+		}
+		//Loc theo giá - set session
+		if(isset($this->_arrParam['price'])&&!empty($this->_arrParam['price'])){
+			//echo 'qua price';
+			//----- unset previous session if exist
+			if(isset($ssFilter->price)&&!empty($ssFilter->price)){unset($ssFilter->price);}	
+			//set session
+			$ssFilter->price=$this->_arrParam['price'];
+		}
+		
+		$this->_redirect($previousURL);	
+	}
+	public function delfilterAction(){
+		$this->_helper->viewRenderer->setNoRender();
+		
+		$ssFilter = new Zend_Session_Namespace($this->_namespace);
+		$previousURL=$ssFilter->previousURL;
+		
+		if(isset($this->_arrParam['cate'])&&!empty($this->_arrParam['cate'])){
+			//----- unset  session 
+			unset($ssFilter->filter_cate);
+		}
+		//Loc theo giá - set session
+		if(isset($this->_arrParam['price'])&&!empty($this->_arrParam['price'])){
+			//----- unset session 
+			unset($ssFilter->price);	
+		}
+		
+		$this->_redirect($previousURL);	
+	}
 }

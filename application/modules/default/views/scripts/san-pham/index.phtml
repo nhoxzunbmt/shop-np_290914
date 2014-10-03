@@ -62,11 +62,36 @@
         <div>
            <div class="title">Đã chọn:</div>
           <?php 
-          
+         if(isset($this->cateFilter)){ 
+                      $filter_str= $this->currentController .'/delfilter'.'/cate';
+                      $filter_name='';  
+                      switch ($this->cateFilter) {
+                      case 1:
+                          $filter_name="Mới nhất";
+                           $filter_str.='/1';
+                          break;
+                      case 2:
+                          $filter_name="Xem nhiều nhất";
+                            $filter_str.='/2';
+                          break;
+                     }
+                     $filter_link =$this->baseUrl($filter_str);
+                     ?>
+                     <div class="mbtn">
+                    <div class="mbtn-left"></div>
+                    <div class="mbtn-center"><?php echo $filter_name;?> 
+                      <a href="<?php echo $filter_link;?>"><img src="<?php echo $this->imgUrl; ?>/close.png" alt="" /></a>
+                    </div>
+                    <div class="mbtn-right"></div>
+                </div>
+                     <?php
+           
+          }
+         
           if(isset($this->priceFilter)){
          
              
-             $filter_str= $this->currentController .'/index/delfilter'.'/price';
+             $filter_str= $this->currentController .'/delfilter'.'/price';
                   $filter_name='';  
                 
                 switch ($this->priceFilter) {
@@ -113,35 +138,42 @@
             <tbody>
               <tr>
                 <td class="type-sort">Danh mục nhất</td>
-                <td>Mới nhất</td>
-                <td>Bán chạy</td>
-                <td>Xem nhiều nhất</td>
-                <td></td>
+                    <td>
+                        <a href="<?php echo $this->baseUrl($this->currentController.'/addfilter/cate/1');?>">
+                        Mới nhất
+                         </a>
+                    </td>
+                    <td>
+                        <a href="<?php echo $this->baseUrl($this->currentController.'/addfilter/cate/2');?>">
+                        Xem nhiều nhất
+                        </a>
+                    </td>
+                
               </tr>
               <tr>
                 <td class="type-sort">Khoảng giá</td>
                 <td>
-                    <a href="<?php echo $this->baseUrl($this->currentController.'/index/price/1');?>">
+                    <a href="<?php echo $this->baseUrl($this->currentController.'/addfilter/price/1');?>">
                     Dưới 5 Triệu
                      </a>
                 </td>
                 <td>
-                    <a href="<?php echo $this->baseUrl($this->currentController.'/index/price/2');?>">
+                    <a href="<?php echo $this->baseUrl($this->currentController.'/addfilter/price/2');?>">
                     Từ 5 Triệu - 10 Triệu
                     </a>
                 </td>
                 <td>
-                    <a href="<?php echo $this->baseUrl($this->currentController.'/index/price/3');?>">
+                    <a href="<?php echo $this->baseUrl($this->currentController.'/addfilter/price/3');?>">
                     Từ 10 Triệu - 15 Triệu
                     </a>
                 </td>
                 <td>
-                    <a href="<?php echo $this->baseUrl($this->currentController.'/index/price/4');?>">
+                    <a href="<?php echo $this->baseUrl($this->currentController.'/addfilter/price/4');?>">
                     Từ 15 Triệu - 20 Triệu
                     </a>
                 </td>
                 <td>
-                    <a href="<?php echo $this->baseUrl($this->currentController.'/index/price/5');?>">
+                    <a href="<?php echo $this->baseUrl($this->currentController.'/addfilter/price/5');?>">
                     Trên 20 triệu
                     </a>
                 </td>

@@ -83,29 +83,41 @@ class Default_Model_Product extends Zend_Db_Table {
 				$keywords = '%' .$ssFilter['keywords'] . '%';
 				$select->where('na.product_name LIKE ?',$keywords);
 			}
-	if(!empty($ssFilter['price'])){
-		switch ($ssFilter['price']) {
-                case 1:
-                   	$select->where('p.price < ?',5000);
-                    break;
-                case 2:
-                    $select->where('p.price >= ?',5000);
-                    $select->where('p.price < ?',10000);
-                    break;
-                case 3:
-                    $select->where('p.price >= ?',10000);
-                    $select->where('p.price < ?',15000);
-                    break;
-                 case 4:
-                    $select->where('p.price >= ?',15000);
-                    $select->where('p.price < ?',20000);
-                    break; 
-                case 5:
-                    $select->where('p.price >= ?',20000);
-                    
-                    break;       
-               }
+			//Loc theo gia
+			if(!empty($ssFilter['price'])){
+				switch ($ssFilter['price']) {
+		                case 1:
+		                   	$select->where('p.price < ?',5000);
+		                    break;
+		                case 2:
+		                    $select->where('p.price >= ?',5000);
+		                    $select->where('p.price < ?',10000);
+		                    break;
+		                case 3:
+		                    $select->where('p.price >= ?',10000);
+		                    $select->where('p.price < ?',15000);
+		                    break;
+		                 case 4:
+		                    $select->where('p.price >= ?',15000);
+		                    $select->where('p.price < ?',20000);
+		                    break; 
+		                case 5:
+		                    $select->where('p.price >= ?',20000);
+						    break;       
+		               }
 			}
+			//Loc theo danh muc
+			if(!empty($ssFilter['filter_cate'])){
+				switch ($ssFilter['filter_cate']) {
+		                case 1:
+		                   	$select->order('p.created_time DESC');
+		                    break;
+		                case 2:
+		                    $select->order('p.view_counter DESC');
+		                   	break;
+		        }
+			} 
+			
 			$result = $db->fetchAll($select);
 			
 		}
